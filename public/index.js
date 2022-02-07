@@ -28,8 +28,8 @@ const sendReq = (url, cb) => {
 
 $submitBtn.addEventListener('click', () => {
     const url = `https://api.github.com/users/${$input.value}`;
-    const starredUrl = `https://api.github.com/users/${$input.value}/starred`;
-    const repoUrl = `https://api.github.com/users/${$input.value}/repos`;
+    const starredUrl = `https://api.github.https://api.github.com/users/amjed-98com/users/${$input.value}/starred`;
+    const repoUrl = `https://ahttps://api.github.com/users/amjed-98pi.github.com/users/${$input.value}/repos`;
 
     // req to get user profile
     sendReq(url, (response) => {
@@ -56,7 +56,7 @@ $submitBtn.addEventListener('click', () => {
         const contributorsUrl = `https://api.github.com/repos/${userName}/${response[2].name}/contributors`;
 
         sendReq(contributorsUrl, (response) => {
-            $contributors.innerText = response[0].login;
+            $contributors.innerText = response[0].name;
         });
     });
 });
