@@ -38,31 +38,28 @@ $submitBtn.addEventListener('click', () => {
         $repoNo.innerText = response.public_repos;
     });
 
-    // req to get user stars
-    sendReq(starredUrl, (response) => {
-        $repoStars.innerText = response.length;
-    });
-
     // req to get user repos
     sendReq(repoUrl, (response) => {
-        $repoName.innerText = response[2].name;
-        $repoLangs.innerText = response[2].language;
-        $issues.innerText = response[2].open_issues;
-        $repoCreated.innerText = response[2].created_at;
-        $watched.innerText = response[2].watchers_count;
 
+
+        $repoStars.innerText = response.reduce(function(a,b){return a + b.stargazers_count},0);
+        $repoName.innerText = response[0].name;
+        $repoLangs.innerText = response[0].language;
+        $issues.innerText = response[0].open_issues;
+        $repoCreated.innerText = response[0].created_at;
+        $watched.innerText = response[0].watchers_count;
+
+        // req to get user contributors 
         const userName = response[0].owner.login;
-
-        const contributorsUrl = `https://api.github.com/repos/${userName}/${response[2].name}/contributors`;
-
+        const contributorsUrl = `https://api.github.com/repos/${userName}/${response[0].name}/contributors`;
         sendReq(contributorsUrl, (response) => {
             $contributors.innerText = response[0].name;
         });
     });
 });
 
-// todo fetch onload
+// todo fetch onload 
 // todo check for status Code
 // todo userLink
-// todo langs
-// todo fix stars
+// todo langs  
+
