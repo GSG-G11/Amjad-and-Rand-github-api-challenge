@@ -5,6 +5,7 @@ const $avatar = document.getElementById('github-user-avatar');
 const $repoNo = document.getElementById('github-user-repos');
 const $repoLangs = document.getElementById('github-repos-languages');
 const $repoStars = document.getElementById('github-repos-stars');
+const $repoUrl = document.getElementById('github-repo-link');
 const $repoName = document.getElementById('github-repo-name');
 const $repoCreated = document.getElementById('github-repo-created');
 const $issues = document.getElementById('github-repo-open-issues');
@@ -34,7 +35,6 @@ window.onload = () => {
 
 $submitBtn.addEventListener('click', () => {
     const url = `https://api.github.com/users/${$input.value}`;
-    // const starredUrl = `https://api.github.com/users/amjed-98com/users/${$input.value}/starred`;
     const repoUrl = `https://api.github.com/users/${$input.value}/repos`;
 
     // req to get user profile
@@ -49,8 +49,9 @@ $submitBtn.addEventListener('click', () => {
         $repoStars.innerText = response.reduce(function (a, b) {
             return a + b.stargazers_count;
         }, 0);
-        console.log(response);
+
         $repoName.innerText = response[0].name;
+        $repoUrl.href = response[0].html_url;
         $repoLangs.innerText = response[0].language;
         $issues.innerText = response[0].open_issues;
         $repoCreated.innerText = response[0].created_at;
