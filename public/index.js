@@ -10,6 +10,7 @@ const $repoCreated = document.getElementById('github-repo-created');
 const $issues = document.getElementById('github-repo-open-issues');
 const $watched = document.getElementById('github-repo-watchers');
 const $contributors = document.getElementById('github-repo-contributors');
+
 const $input = document.getElementById('search');
 const $submitBtn = document.getElementById('submit');
 
@@ -26,10 +27,15 @@ const sendReq = (url, cb) => {
     req.send();
 };
 
+window.onload = () => {
+    $input.value = `amjed-98`;
+    $submitBtn.click();
+};
+
 $submitBtn.addEventListener('click', () => {
     const url = `https://api.github.com/users/${$input.value}`;
-    const starredUrl = `https://api.github.https://api.github.com/users/amjed-98com/users/${$input.value}/starred`;
-    const repoUrl = `https://ahttps://api.github.com/users/amjed-98pi.github.com/users/${$input.value}/repos`;
+    // const starredUrl = `https://api.github.com/users/amjed-98com/users/${$input.value}/starred`;
+    const repoUrl = `https://api.github.com/users/${$input.value}/repos`;
 
     // req to get user profile
     sendReq(url, (response) => {
@@ -40,26 +46,25 @@ $submitBtn.addEventListener('click', () => {
 
     // req to get user repos
     sendReq(repoUrl, (response) => {
-
-
-        $repoStars.innerText = response.reduce(function(a,b){return a + b.stargazers_count},0);
+        $repoStars.innerText = response.reduce(function (a, b) {
+            return a + b.stargazers_count;
+        }, 0);
+        console.log(response);
         $repoName.innerText = response[0].name;
         $repoLangs.innerText = response[0].language;
         $issues.innerText = response[0].open_issues;
         $repoCreated.innerText = response[0].created_at;
         $watched.innerText = response[0].watchers_count;
 
-        // req to get user contributors 
+        // req to get user contributors
         const userName = response[0].owner.login;
         const contributorsUrl = `https://api.github.com/repos/${userName}/${response[0].name}/contributors`;
         sendReq(contributorsUrl, (response) => {
-            $contributors.innerText = response[0].name;
+            $contributors.innerText = response[0].login;
         });
     });
 });
 
-// todo fetch onload 
 // todo check for status Code
 // todo userLink
-// todo langs  
-
+// todo langs
