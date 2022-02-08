@@ -1,6 +1,15 @@
 /* let's go! */
+// response.map((repo) => {
+//     sendReq(repo.languages_url, (response) => {
+//         let langs = [];
+//         const lang = Object.keys(response);
+//         langs.push(lang);
+//         console.log(langs);
+//     });
+// });
 
 const $userName = document.getElementById('github-user-handle');
+const $userProfileLink = document.getElementById('github-user-link');
 const $avatar = document.getElementById('github-user-avatar');
 const $repoNo = document.getElementById('github-user-repos');
 const $repoLangs = document.getElementById('github-repos-languages');
@@ -13,8 +22,8 @@ const $watched = document.getElementById('github-repo-watchers');
 const $contributors = document.getElementById('github-repo-contributors');
 
 const $input = document.getElementById('search');
+const $form = document.querySelector('#form');
 const $submitBtn = document.getElementById('submit');
-
 const sendReq = (url, cb) => {
     const req = new XMLHttpRequest();
 
@@ -25,6 +34,12 @@ const sendReq = (url, cb) => {
     };
 
     req.open('GET', url);
+
+    req.setRequestHeader(
+        'Authorization',
+        `token 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`
+    );
+
     req.send();
 };
 
@@ -33,13 +48,14 @@ window.onload = () => {
     $submitBtn.click();
 };
 
-$submitBtn.addEventListener('click', () => {
+$submitBtn.addEventListener('click', (e) => {
     const url = `https://api.github.com/users/${$input.value}`;
     const repoUrl = `https://api.github.com/users/${$input.value}/repos`;
 
     // req to get user profile
     sendReq(url, (response) => {
         $userName.innerText = response.name;
+        $userProfileLink.href = response.html_url;
         $avatar.src = response.avatar_url;
         $repoNo.innerText = response.public_repos;
     });
@@ -52,7 +68,6 @@ $submitBtn.addEventListener('click', () => {
 
         $repoName.innerText = response[0].name;
         $repoUrl.href = response[0].html_url;
-        $repoLangs.innerText = response[0].language;
         $issues.innerText = response[0].open_issues;
         $repoCreated.innerText = response[0].created_at;
         $watched.innerText = response[0].watchers_count;
@@ -63,9 +78,31 @@ $submitBtn.addEventListener('click', () => {
         sendReq(contributorsUrl, (response) => {
             $contributors.innerText = response[0].login;
         });
+
+        let langsArr = [];
+
+        for (let i = 0; i < response.length; i++) {
+            // get langs
+            sendReq(
+                `https://api.github.com/repos/${userName}/${response[i].name}/languages`,
+                (response) => {
+                    const keys = Object.keys(response);
+                    langsArr.push(...keys);
+                }
+            );
+        }
+
+        setTimeout(() => {
+            const langs = [...new Set(langsArr)];
+            langs.forEach((lang) => {
+                const $langEl = document.createElement('span');
+                $langEl.classList.add('lang');
+                $langEl.append(lang);
+
+                $repoLangs.append($langEl);
+            });
+        }, 100);
     });
 });
 
-// todo check for status Code
-// todo userLink
-// todo langs
+// todo fix langs bug

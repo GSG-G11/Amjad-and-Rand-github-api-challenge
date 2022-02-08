@@ -1,4 +1,7 @@
 body {
+    margin: 0;
+    padding: 0;
+
     font-family: sans-serif;
     color: #333;
     background-color: #eee;
@@ -7,11 +10,16 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url('./bg.jpeg');
+    background-position: center;
+    background-size: cover;
+    color: white;
 }
 
 img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
 }
 
 a,
@@ -19,6 +27,13 @@ a:hover,
 a:active,
 a:visited {
     color: #555;
+    text-decoration: none;
+}
+
+#result {
+    box-shadow: 0 0 20px 3px #000000;
+    padding: 1rem;
+    text-align: center;
 }
 
 input {
@@ -31,7 +46,54 @@ input {
 button {
     padding: 0.5em;
     border: none;
-    background: red;
+    background: green;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#github-user-handle {
+    color: rgb(0, 255, 0);
+}
+
+#repos,
+#github-repos-languages,
+#top-repo,
+#created,
+#issues,
+#watchers,
+#contributers {
+    font-weight: bold;
+    font-size: large;
+}
+
+#github-user-repos,
+#github-repos-stars,
+#github-repo-name,
+#github-repo-created,
+#github-repo-open-issues,
+#github-repo-watchers,
+#github-repo-contributors,
+.lang {
+    padding: 0.4rem;
+    background: green;
     color: white;
     cursor: pointer;
+    box-shadow: 0px 0px 5px 1px grey;
+    font-weight: bolder;
+}
+
+#github-repo-name {
+    width: fit-content;
+    margin: 0 auto;
+}
+#github-repos-languages {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    align-items: center;
+    gap: 0.4rem;
+    width: 60%;
+    justify-content: center;
+    margin: 0 auto;
 }
