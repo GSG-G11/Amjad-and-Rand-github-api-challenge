@@ -2,7 +2,7 @@
 
 Amjad-and-Rand-github-api-challenge/
 
-#### after you clone you should use your own access token in index js line 40 - replace "access Token" phrase with you actual access token
+#### after you clone you should use your own access token in index js line 40 - replace "access Token" phrase with you actual access token to increase the limit of requests to 5000/hr instead of 50/hr
 
 # workshop-APIs
 
