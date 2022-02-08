@@ -35,10 +35,7 @@ const sendReq = (url, cb) => {
 
     req.open('GET', url);
 
-    req.setRequestHeader(
-        'Authorization',
-        `token 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`
-    );
+    req.setRequestHeader('Authorization', 'token' + 'access token');
 
     req.send();
 };

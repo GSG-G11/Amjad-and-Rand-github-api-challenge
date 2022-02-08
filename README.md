@@ -1,12 +1,17 @@
-#### live :https://gsg-g11.github.io/Amjad-and-Rand-github-api-challenge/
+#### live :https://gsg-g11.github.io/
+
+Amjad-and-Rand-github-api-challenge/
+
+#### after you clone you should use your own access token in index js line 40 - replace "access Token" phrase with you actual access token
+
 # workshop-APIs
 
 In this workshop we'll build on things we've learnt so far by using the GitHub API in order to practise:
 
-- Making HTTP Get requests on the client side
-- Callbacks
-- Working with large amounts of JSON-formatted data
-- DOM manipulation
+-   Making HTTP Get requests on the client side
+-   Callbacks
+-   Working with large amounts of JSON-formatted data
+-   DOM manipulation
 
 ## Remember
 
@@ -52,9 +57,9 @@ Write a couple of tests. For testing we'll be using a very simple testing librar
 
 A tests folder is already set up to you. Here are some quick instructions for getting started:
 
-- In `tests/tests.js`, have a look at the examples that are written for you
-- Open `tests/spec.html` in your browser to see the tests pass and fail
-- Add your own tests (use the examples as a guide; here's a link to the [official documentation](http://api.qunitjs.com/QUnit/test))
+-   In `tests/tests.js`, have a look at the examples that are written for you
+-   Open `tests/spec.html` in your browser to see the tests pass and fail
+-   Add your own tests (use the examples as a guide; here's a link to the [official documentation](http://api.qunitjs.com/QUnit/test))
 
 ---
 
