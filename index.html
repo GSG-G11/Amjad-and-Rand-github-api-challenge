@@ -7,8 +7,8 @@
     </head>
 
     <body>
-        <div>
-            <input id="search" placeholder="Search you profile" />
+        <div id="result">
+            <input id="search" placeholder="fetch you profile" />
             <button id="submit">Search</button>
 
             <!-- First use API calls to populate the following sections of the DOM with your own data -->
@@ -22,24 +22,28 @@
             </p>
 
             <!-- Now we'll show details of your repos -->
-            <p>Languages:&nbsp;<span id="github-repos-languages"></span></p>
+            <div id="github-repos-languages">Languages:&nbsp;</div>
             <p>Total stars:&nbsp;<span id="github-repos-stars"></span></p>
             <hr />
 
             <!-- let's focus on one of your repos - the first in the list! we'll have to make at least one more API call in order to get all the info needed, uncomment the code below! -->
 
-            <h3>My top repo</h3>
+            <h3 id="top-repo">My top repo</h3>
             <a id="github-repo-link" href="#" target="blank">
                 <h4 id="github-repo-name">Repo name here</h4>
             </a>
-            <p>Created:&nbsp;<span id="github-repo-created"></span></p>
-            <p>
+            <p id="created">
+                Created:&nbsp;<span id="github-repo-created"></span>
+            </p>
+            <p id="issues">
                 Number of open issues:&nbsp;<span
                     id="github-repo-open-issues"
                 ></span>
             </p>
-            <p>People watching:&nbsp;<span id="github-repo-watchers"></span></p>
-            <p>
+            <p id="watchers">
+                People watching:&nbsp;<span id="github-repo-watchers"></span>
+            </p>
+            <p id="contributers">
                 Contributors:&nbsp;<span id="github-repo-contributors"></span>
             </p>
         </div>
